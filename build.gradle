@@ -3,10 +3,10 @@ def probVersion = 'milestone-28-SNAPSHOT'
 
 def targets = ["linux32", "linux64", "osx64", "win32"]
 def serverTargetMapping = ["linux32": "linux32", "linux64": "linux64", "osx64": "leopard64", "win32": "win32"]
-def target_params = [  "osx64" : ['--macIcns','icons/macIcon.icns'],
+def target_params = ["osx64"   : ['--macIcns','icons/macIcon.icns'],
                      "linux32" : [], 
                      "linux64" : [], 
-                       "win32" : []]
+                     "win32"   : []]
 
 def download(String address, String target) {
     def file = new FileOutputStream(target)
