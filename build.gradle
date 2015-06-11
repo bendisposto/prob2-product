@@ -130,7 +130,7 @@ allprojects {
     }
 
 
-    task standaloneDist(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') }, tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) << {
+    task dist(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') }, tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) << {
     }
 
 
