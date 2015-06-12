@@ -1,4 +1,4 @@
-= ProB 2.0 = 
+# ProB 2.0 
 
 [![Build Status](https://travis-ci.org/bendisposto/prob2-product.svg)](https://travis-ci.org/bendisposto/prob2-product)
 
