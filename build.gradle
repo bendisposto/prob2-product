@@ -67,11 +67,20 @@ targets.each() { target ->
                                          '--appVersion', '2.0',
                                          '--cacheDir', 'nw_cache',
                                          '--buildType','versioned',
-                                         'ui/resources/public'])
+                                         'resources'])
         }
     }
 
-
-    task dist(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') },
-                          tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) << {
+targets.each() { target ->
+        task "zip_${target}"(type: Zip) {
+           from("dist/ProB/${target}/")
+           into('ProB 2.0')
+           destinationDir file('archives')
+           archiveName("prob2_${target}")
+        }
     }
+
+task dist(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') },
+                      tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) {
+
+}
