@@ -84,3 +84,5 @@ task assemble(dependsOn: [tasks.withType(Exec).matching { task -> task.name.star
                       tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) {
 
 }
+
+task check {}
