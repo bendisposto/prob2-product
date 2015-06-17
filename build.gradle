@@ -80,7 +80,7 @@ targets.each() { target ->
         }
     }
 
-task dist(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') },
+task assemble(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') },
                       tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) {
 
 }

@@ -1,5 +1,4 @@
 language: java
-script: gradle dist
 jdk:
 - oraclejdk7
 after_success: find archives/ -type f -exec curl -u $FTP_USER:$FTP_PASS --ftp-create-dirs
