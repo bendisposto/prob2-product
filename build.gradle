@@ -4,8 +4,8 @@ def probVersion = 'milestone-28-SNAPSHOT'
 def targets = ["linux32", "linux64", "osx64", "win32"]
 def serverTargetMapping = ["linux32": "linux32", "linux64": "linux64", "osx64": "leopard64", "win32": "win32"]
 def target_params = ["osx64"   : ['--macIcns','icons/macIcon.icns'],
-                     "linux32" : [], 
-                     "linux64" : [], 
+                     "linux32" : [],
+                     "linux64" : [],
                      "win32"   : []]
 
 def download(String address, String target) {
@@ -18,20 +18,6 @@ def download(String address, String target) {
 // ----------------------------------------
 // Helper methods ...
 // ----------------------------------------
-def downloadClientData(String mode) {
-    println "Downloading " + mode + " client data..."
-    // Prepare folders ...
-    //def cssDir = new File(mode + '/build/resources/client/css')
-    //def jsDir = new File(mode + '/build/resources/client/js')
-    //if (!cssDir.exists()) cssDir.mkdirs()
-    //if (!jsDir.exists()) jsDir.mkdirs()
-    // Download current data
-    //def String url = "http://nightly.cobra.cs.uni-duesseldorf.de/bmotion/bmotion-prob-frontend"
-    //download(url + '/js/bmotion.' + mode + '.js', mode + '/build/resources/client/js/bmotion.' + mode + '.js')
-    //download(url + '/css/bmotion.min.css', mode + '/build/resources/client/css/bmotion.min.css')
-    println " done."
-}
-
 def download_cspm(String target, String mode) {
     def String downloadFile = target
     def String postfix = ""
@@ -47,80 +33,36 @@ def download_cspm(String target, String mode) {
     println " done."
 }
 
-def download_cli(target, probVersion, String mode) {
-    def downloadFile = target
-    def String dir = mode + "/build/cli/" + target + "_cli/cli"
-    def d = new File(dir)
-    delete file(d)
-    d.mkdirs();
-    def url = "http://nightly.cobra.cs.uni-duesseldorf.de/tmp/" + probVersion + "/probcli_" + downloadFile + ".zip"
-    //def nwurl = "http://nightly.cobra.cs.uni-duesseldorf.de/cli/probcli_"+downloadFile+".zip"
-    println "Downloading cli for " + target + " ..."
-    def String targetzip = dir + "probcli.zip"
-    download(url, targetzip)
-    println " done."
-    FileTree zip = zipTree(targetzip)
-    println "Unzipping " + zip
-    copy {
-        from zip
-        into dir
-    }
-    delete file(targetzip)
-}
 
-allprojects {
-
-    apply plugin: 'java'
-
-    sourceCompatibility = 1.6
-
-    repositories {
-        maven {
-            name "cobra"
-            url "http://cobra.cs.uni-duesseldorf.de/artifactory/repo"
-        }
-    }
-
-    configurations.all { resolutionStrategy.cacheChangingModulesFor 0, 'seconds' }
-
-    dependencies {
-      compile(group: 'de.prob2.ui-server', name: 'de.prob2.ui-server', version: '0.1.0-SNAPSHOT')
-    }
-
-    // Extend clean task ...
-    clean {
-        delete("cli")
-        delete("online")
-        delete("standalone")
-    }
-
-    serverTargetMapping.each() { k, v ->
+serverTargetMapping.each() { k, v ->
         task "downloadCli_${k}" << {
             download_cli(v, probVersion, project.name)
             download_cspm(v, project.name)
         }
-    }
-
-    task copyClientData(type: Copy) {
-        from '../resources/' + project.name
-        into 'build/resources/client'
-    }
-
-    task downloadClientData(dependsOn: [copyClientData]) << {
-        downloadClientData(project.name)
-    }
-
 }
 
-    task npmDeps(type: Exec) {
-        commandLine "npm", 'install', '-g', 'node-webkit-builder'
-    }
 
-    targets.each() { target ->
-        task "buildClient_${target}"(dependsOn: [downloadClientData, npmDeps], type: Exec) {
+task downloadArtifacts() << {
+        download("http://nightly.cobra.cs.uni-duesseldorf.de/prob2/builds/tmp/resources.zip","resources.zip")
+      	FileTree zip = zipTree("resources.zip")
+      	copy {
+      		from zip
+      		into "./"
+      	}
+      	delete file("resources.zip")
+        download("http://nightly.cobra.cs.uni-duesseldorf.de/prob2/builds/tmp/prob2.jar","resources/prob2.jar")
+}
+
+
+task npmDeps(type: Exec) {
+        commandLine "npm", 'install', '-g', 'node-webkit-builder'
+}
+
+targets.each() { target ->
+        task "buildClient_${target}"(dependsOn: [downloadArtifacts, npmDeps], type: Exec) {
            executable "nwbuild"
-           args(target_params[target] + ['-v', '0.12.1', 
-                                         '-o', 'dist', 
+           args(target_params[target] + ['-v', '0.12.1',
+                                         '-o', 'dist',
                                          '-p', target,
                                          '--appVersion', '2.0',
                                          '--cacheDir', 'nw_cache',
@@ -130,7 +72,6 @@ allprojects {
     }
 
 
-    task dist(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') }, tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) << {
+    task dist(dependsOn: [tasks.withType(Exec).matching { task -> task.name.startsWith('buildClient_') },
+                          tasks.withType(Zip).matching { task -> task.name.startsWith('zip_') }]) << {
     }
-
-
