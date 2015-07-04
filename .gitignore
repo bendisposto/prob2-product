@@ -1,4 +1,8 @@
-.gradle
-archives
-dist
-resources
+.DS_Store
+npm-debug.log
+node_modules
+*.bin
+dist/*
+Thumbs.db
+build/windows/*.tmp
+build/mac/tmp.*
