@@ -1,4 +1,6 @@
 language: objective-c
+before_install:
+ - npm install -g grunt
 script: 
  - npm install build/
  - grunt --gruntfile build/Gruntfile.coffee
