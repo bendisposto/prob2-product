@@ -91,7 +91,7 @@ module.exports = (grunt) ->
 
 # The prebuild-less-task defines which themes have to be present.
 # Reduced to atom-dark-ui/base16-tomorrow-dark-theme
-    deletePackage 'atom-dark-syntax'
+
     deletePackage 'atom-light-syntax'
     deletePackage 'atom-light-ui'
     deletePackage 'base16-tomorrow-light-theme'
@@ -102,6 +102,7 @@ module.exports = (grunt) ->
     deletePackage 'solarized-dark-syntax'
     deletePackage 'solarized-light-syntax'
 
+    #deletePackage 'atom-dark-syntax' #required
     #deletePackage 'atom-dark-ui' #required
     #deletePackage 'base16-tomorrow-dark-theme' #required
     #deletePackage 'symbols-view' # required by asar?
