@@ -1,3 +1,4 @@
+language: javascript
 skript:
 - npm install build/
 - grunt --gruntfile build/Gruntfile.coffee
