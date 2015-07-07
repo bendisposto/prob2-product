@@ -1,7 +1,7 @@
 language: objective-c
 skript: 
- -	npm install build/
- -	grunt --gruntfile build/Gruntfile.coffee
+ - npm install build/
+ - grunt --gruntfile build/Gruntfile.coffee
 after_success: find archives/ -type f -exec curl -u $FTP_USER:$FTP_PASS --ftp-create-dirs
   -T {} ftp://cobra.cs.uni-duesseldorf.de/upload/{} \;
 env:
