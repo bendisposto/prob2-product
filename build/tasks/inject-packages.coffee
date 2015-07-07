@@ -70,11 +70,8 @@ module.exports = (grunt) ->
     deletePackage 'link'
     deletePackage 'notifications'
     deletePackage 'package-generator'
-    deletePackage 'settings-view'
     deletePackage 'styleguide'
-    deletePackage 'status-bar'
     deletePackage 'tabs'
-    deletePackage 'tree-view'
     deletePackage 'update-package-dependencies'
     deletePackage 'whitespace'
     deletePackage 'wrap-guide'
@@ -83,6 +80,14 @@ module.exports = (grunt) ->
     deletePackage 'welcome'
     deletePackage 'exception-reporting'
     deletePackage 'deprecation-cop'
+
+# Selected ...
+
+    #deletePackage 'status-bar'
+    #deletePackage 'tree-view'
+    #deletePackage 'settings-view'
+
+
 
 # The prebuild-less-task defines which themes have to be present.
 # Reduced to atom-dark-ui/base16-tomorrow-dark-theme
