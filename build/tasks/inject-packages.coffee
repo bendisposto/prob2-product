@@ -46,12 +46,7 @@ module.exports = (grunt) ->
     deletePackage 'autocomplete-plus'
     deletePackage 'autocomplete-snippets'
     deletePackage 'snippets'
-    deletePackage 'encoding-selector'
-    deletePackage 'find-and-replace'
-    deletePackage 'fuzzy-finder'
     deletePackage 'git-diff'
-    deletePackage 'go-to-line'
-    deletePackage 'bracket-matcher'
     deletePackage 'markdown-preview'
     deletePackage 'open-on-github'
     deletePackage 'spell-check'
@@ -63,7 +58,6 @@ module.exports = (grunt) ->
     deletePackage 'bookmarks'
     deletePackage 'command-palette'
     deletePackage 'dev-live-reload'
-    deletePackage 'grammar-selector'
     deletePackage 'image-view'
     deletePackage 'incompatible-packages'
     deletePackage 'keybinding-resolver'
@@ -86,6 +80,12 @@ module.exports = (grunt) ->
     #deletePackage 'status-bar'
     #deletePackage 'tree-view'
     #deletePackage 'settings-view'
+    #deletePackage 'encoding-selector'
+    #deletePackage 'go-to-line'
+    #deletePackage 'bracket-matcher'
+    #deletePackage 'grammar-selector'
+    #deletePackage 'find-and-replace'
+    #deletePackage 'fuzzy-finder'
 
 
 
