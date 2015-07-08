@@ -1,9 +1,7 @@
-language: objective-c
-before_install:
- - npm install -g grunt
-script: 
- - npm install build/
- - grunt --gruntfile build/Gruntfile.coffee
+language: node_js
+before_install: npm install -g grunt-cli
+install: npm install build/
+before_script: grunt --gruntfile build/Gruntfile.coffee
 after_success: find archives/ -type f -exec curl -u $FTP_USER:$FTP_PASS --ftp-create-dirs
   -T {} ftp://cobra.cs.uni-duesseldorf.de/upload/{} \;
 env:
