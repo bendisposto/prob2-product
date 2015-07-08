@@ -25,7 +25,7 @@ module.exports = (grunt) ->
     cp = require 'child_process'
     cp.exec 'open ' + workDir
 
-  appName = 'ProB'
+  appName = 'ProB 2.0'
   installDir = path.join(__dirname, '..', 'dist', process.platform, appName)
   if process.platform is 'darwin'
     installDir += '.app'
@@ -40,8 +40,8 @@ module.exports = (grunt) ->
       atomVersion = _s.trim(value)
   grunt.log.writeln '(i) Atom version is ' + atomVersion
 
-  probVersion = "2.0.0"
-  grunt.log.writeln '(i) ProB version is ' + probVersion
+  probVersion = "1.0.0"
+  grunt.log.writeln '(i) ProB 2.0 - Atom version is ' + probVersion
 
   grunt.initConfig
     workDir: workDir

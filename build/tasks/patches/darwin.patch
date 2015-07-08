@@ -4,12 +4,13 @@
  'menu': [
    {
 -    label: 'Atom'
-+    label: 'ProB'
++    label: 'ProB 2.0'
      submenu: [
 -      { label: 'About Atom', command: 'application:about' }
-+      { label: 'About ProB', command: 'application:about' }
++      { label: 'About ProB 2.0', command: 'application:about' }
        { label: 'View License', command: 'application:open-license' }
-       { label: 'VERSION', enabled: false }
+-      { label: 'VERSION', enabled: false }
++      { label: 'Platform Version: 1.0.0', enabled: false }
        { label: 'Restart and Install Update', command: 'application:install-update', visible: false}
 @@ -20,7 +20,7 @@
        { type: 'separator' }

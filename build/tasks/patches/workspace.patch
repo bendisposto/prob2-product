@@ -5,7 +5,7 @@
    # open.
    updateWindowTitle: =>
 -    appName = 'Atom'
-+    appName = 'ProB'
++    appName = 'ProB 2.0'
      projectPaths = atom.project?.getPaths() ? []
      if item = @getActivePaneItem()
        itemPath = item.getPath?()

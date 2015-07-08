@@ -1,6 +1,6 @@
 Name "ProB"
 OutFile ${OUT_FILE}
-InstallDir "$PROGRAMFILES\ProB"
+InstallDir "$PROGRAMFILES\ProB 2.0"
 
 LicenseData "..\..\LICENSE"
 
@@ -11,37 +11,37 @@ Page instfiles
 UninstPage uninstConfirm
 UninstPage instfiles
 
-Section "ProB (required)"
+Section "ProB 2.0 (required)"
   SectionIn RO
   SetOutPath $INSTDIR
 
   RMDir /r "$INSTDIR"
   File /r "\\?\${SOURCE}\*.*"
 
-  CreateShortCut "$DESKTOP\ProB.lnk" "$INSTDIR\atom.exe" ""
+  CreateShortCut "$DESKTOP\ProB 2.0.lnk" "$INSTDIR\atom.exe" ""
 
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB2" "DisplayName" "ProB"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB2" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB 2.0" "DisplayName" "ProB 2.0"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB 2.0" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\" "NoModify" 1
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB2" "NoRepair" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB 2.0" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
 SectionEnd
 
 Section "Start Menu Shortcuts"
-  CreateDirectory "$SMPROGRAMS\ProB"
-  CreateShortcut "$SMPROGRAMS\ProB\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortcut "$SMPROGRAMS\ProB\ProB.lnk" "$INSTDIR\atom.exe" "" "$INSTDIR\atom.exe" 0
+  CreateDirectory "$SMPROGRAMS\ProB 2.0"
+  CreateShortcut "$SMPROGRAMS\ProB 2.0\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
+  CreateShortcut "$SMPROGRAMS\ProB 2.0\ProB 2.0.lnk" "$INSTDIR\atom.exe" "" "$INSTDIR\atom.exe" 0
 SectionEnd
 
 Section "Uninstall"
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB2"
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ProB 2.0"
 
   Delete $INSTDIR\*
 
-  Delete "$DESKTOP\ProB.lnk"
+  Delete "$DESKTOP\ProB 2.0.lnk"
 
-  Delete "$SMPROGRAMS\ProB\*.*"
+  Delete "$SMPROGRAMS\ProB 2.0\*.*"
 
-  RMDir /r "$SMPROGRAMS\ProB"
+  RMDir /r "$SMPROGRAMS\ProB 2.0"
   RMDir /r "$INSTDIR"
 SectionEnd

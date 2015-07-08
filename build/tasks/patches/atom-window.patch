@@ -5,7 +5,7 @@
      options =
        show: false
 -      title: 'Atom'
-+      title: 'ProB'
++      title: 'ProB 2.0'
        'web-preferences':
          'direct-write': true
          'subpixel-font-scaling': false
