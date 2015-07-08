@@ -3,6 +3,11 @@ path = require 'path'
 cp = require 'child_process'
 workDir = null
 
+replaceAtomFile = (from) ->
+  to = from.replace '/', path.sep
+  fs.copySync path.join(__dirname, '..', 'atom', from),
+              path.join(workDir, to)
+
 pathFile = (patchFile, targetFile, callback) ->
   console.log ' Applying ' + patchFile
   patchFile = path.join(__dirname, 'patches', patchFile)
@@ -32,6 +37,11 @@ module.exports = (grunt) ->
     fs.removeSync path.join(workDir, 'node_modules', 'coffeestack', 'spec')
     fs.removeSync path.join(workDir, 'node_modules', 'exception-reporting', 'node_modules', 'coffeestack', 'spec')
 
+    # Replace files
+    replaceAtomFile 'menus/darwin.cson'
+    replaceAtomFile 'menus/win32.cson'
+    replaceAtomFile 'menus/linux.cson'
+
     # Patching
     pathFile 'atom-application.patch', 'src/browser/atom-application.coffee', ->
       file = path.join workDir, 'src/browser/atom-application.coffee'
@@ -46,11 +56,13 @@ module.exports = (grunt) ->
                     if process.platform is 'darwin'
                       pathFile 'atom-Info.patch', 'resources/mac/atom-Info.plist', ->
                         pathFile 'codesign-task.patch', 'build/tasks/codesign-task.coffee', ->
-                          pathFile 'darwin.patch', 'menus/darwin.cson', ->
+                    #      pathFile 'darwin.patch', 'menus/darwin.cson', ->
                             done()
-                    else if process.platform is 'win32'
-                      pathFile 'win32.patch', 'menus/win32.cson', ->
-                        done()
                     else
-                      pathFile 'linux.patch', 'menus/linux.cson', ->
-                        done()
+                       done()
+                    #else if process.platform is 'win32'
+                    #  pathFile 'win32.patch', 'menus/win32.cson', ->
+                    #    done()
+                    #else
+                    #  pathFile 'linux.patch', 'menus/linux.cson', ->
+                    #    done()
