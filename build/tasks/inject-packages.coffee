@@ -17,7 +17,6 @@ module.exports = (grunt) ->
     deletePackage 'bookmarks'
     deletePackage 'dev-live-reload'
     deletePackage 'incompatible-packages'
-    deletePackage 'notifications'
     deletePackage 'styleguide'
     deletePackage 'update-package-dependencies'
     deletePackage 'release-notes'
@@ -99,6 +98,7 @@ module.exports = (grunt) ->
     #deletePackage 'link'
     #deletePackage 'keybinding-resolver'
 
+    #deletePackage 'notifications'
 
 
 
