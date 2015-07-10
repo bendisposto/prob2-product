@@ -12,7 +12,7 @@ module.exports = (grunt) ->
 
     command = path.join('build', 'node_modules', '.bin', 'grunt') +
               ' --gruntfile ' + path.join('build', 'Gruntfile.coffee') +
-              ' --install-dir "' + installDir + '" ' +
+              ' --install-dir "' + installDir + '" --stack -d ' +
               'download-atom-shell download-atom-shell-chromedriver build set-version generate-asar '
 
     if not grunt.option('no-codesign')
