@@ -49,6 +49,22 @@
         ]
       }
       {
+        label: 'Animate',
+        submenu: []
+      }
+      {
+        label: 'Verify',
+        submenu: []
+      }
+      {
+        label: 'Analyze',
+        submenu: []
+      }
+      {
+        label: 'Visualize',
+        submenu: []
+      }            
+      {
         label: 'Text',
         submenu: [
           { label: '&Upper Case', command: 'editor:upper-case' }
