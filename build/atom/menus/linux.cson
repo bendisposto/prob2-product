@@ -49,22 +49,6 @@
         ]
       }
       {
-        label: 'Animate',
-        submenu: []
-      }
-      {
-        label: 'Verify',
-        submenu: []
-      }
-      {
-        label: 'Analyze',
-        submenu: []
-      }
-      {
-        label: 'Visualize',
-        submenu: []
-      }            
-      {
         label: 'Text',
         submenu: [
           { label: '&Upper Case', command: 'editor:upper-case' }
@@ -150,7 +134,22 @@
       { label: 'Toggle Soft &Wrap', command: 'editor:toggle-soft-wrap' }
     ]
   }
-
+  {
+    label: 'Animate',
+    submenu: []
+  }
+  {
+    label: 'Verify',
+    submenu: []
+  }
+  {
+    label: 'Analyze',
+    submenu: []
+  }
+  {
+    label: 'Visualize',
+    submenu: []
+  }  
   {
     label: '&Selection'
     submenu: [

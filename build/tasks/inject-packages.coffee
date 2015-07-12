@@ -108,11 +108,11 @@ module.exports = (grunt) ->
     injectPackage 'language-groovy', '0.4.0'
   #  injectPackage 'pdf-view', '0.22.0'
 
-
-
-
 # Required for building
     #deletePackage 'atom-dark-syntax' #required
     #deletePackage 'atom-dark-ui' #required
     #deletePackage 'base16-tomorrow-dark-theme' #required
     #deletePackage 'symbols-view' # required by asar?
+
+# ProB 2.0
+    injectPackage 'prob', '0.1.0'

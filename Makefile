@@ -1,4 +1,4 @@
 .PHONY: build
 build:
 	npm install build/
-	grunt --gruntfile build/Gruntfile.coffee
+	grunt --gruntfile build/Gruntfile.coffee -d --stacktrace
